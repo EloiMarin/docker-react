@@ -1,0 +1,35 @@
+version: '3.7'
+services:
+  web:
+    container_name: ${PROJECT}/web
+    build: .
+    image: emgware/react
+    volumes:
+      - .:/opt
+      - /usr/local/share/.cache/yarn:/usr/local/share/.cache/yarn
+    working_dir: /opt
+    command: yarn start
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./.env.${STAGE}
+
+  cosmos:
+    container_name: ${PROJECT}/cosmos
+    build: .
+    image: emgware/react
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/opt
+    working_dir: /opt
+    command: yarn cosmos
+
+  test:
+    container_name: ${PROJECT}/test
+    build: .
+    image: emgware/react
+    volumes:
+    - .:/opt
+    working_dir: /opt
+    command: yarn test
