@@ -1,8 +1,7 @@
 version: '3.7'
 services:
   web:
-    container_name: ${PROJECT}/web
-    build: .
+    container_name: ${PROJECT}_web
     image: emgware/react
     volumes:
       - .:/opt
@@ -15,8 +14,7 @@ services:
       - ./.env.${STAGE}
 
   cosmos:
-    container_name: ${PROJECT}/cosmos
-    build: .
+    container_name: ${PROJECT}_cosmos
     image: emgware/react
     ports:
       - "5000:5000"
@@ -26,8 +24,7 @@ services:
     command: yarn cosmos
 
   test:
-    container_name: ${PROJECT}/test
-    build: .
+    container_name: ${PROJECT}_test
     image: emgware/react
     volumes:
     - .:/opt
