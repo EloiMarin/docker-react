@@ -8,6 +8,8 @@ services:
       - /usr/local/share/.cache/yarn:/usr/local/share/.cache/yarn
     working_dir: /opt
     command: yarn start
+    environment:
+      - PROJECT
     ports:
       - "3000:3000"
     env_file:
@@ -22,11 +24,15 @@ services:
       - .:/opt
     working_dir: /opt
     command: yarn cosmos
+    environment:
+      - PROJECT
 
   test:
     container_name: ${PROJECT}_test
     image: emgware/react
     volumes:
-    - .:/opt
+      - .:/opt
     working_dir: /opt
     command: yarn test
+    environment:
+      - PROJECT
