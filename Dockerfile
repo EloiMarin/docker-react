@@ -18,6 +18,7 @@ RUN cd /tmp && \
     make install
 
 USER node
+WORKDIR /home/node
 
 RUN mkdir /home/node/.npm-global
 ENV PATH=/home/node/.npm-global/bin:$PATH

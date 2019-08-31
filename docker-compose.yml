@@ -4,9 +4,8 @@ services:
     container_name: ${PROJECT}_web
     image: emgware/react
     volumes:
-      - .:/opt
+      - .:.
       - /usr/local/share/.cache/yarn:/usr/local/share/.cache/yarn
-    working_dir: /opt
     command: yarn start
     environment:
       - PROJECT
@@ -21,8 +20,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - .:/opt
-    working_dir: /opt
+      - .:.
     command: yarn cosmos
     environment:
       - PROJECT
@@ -31,8 +29,7 @@ services:
     container_name: ${PROJECT}_test
     image: emgware/react
     volumes:
-      - .:/opt
-    working_dir: /opt
+      - .:.
     command: yarn test
     environment:
       - PROJECT
