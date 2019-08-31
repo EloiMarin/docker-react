@@ -8,12 +8,6 @@ RUN apt-get update && \
     apt-get -y install yarn python python-pip python-dev
 RUN ln -sf /usr/bin/yarn /usr/local/bin/yarn
 
-USER node
-
-RUN mkdir /home/node/.npm-global
-ENV PATH=/home/node/.npm-global/bin:$PATH
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-
 RUN cd /tmp && \
     git clone https://github.com/facebook/watchman.git && \
     cd watchman && \
@@ -22,6 +16,12 @@ RUN cd /tmp && \
     ./configure && \
     make && \
     make install
+
+USER node
+
+RUN mkdir /home/node/.npm-global
+ENV PATH=/home/node/.npm-global/bin:$PATH
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 
 RUN yarn global add create-react-app
 
